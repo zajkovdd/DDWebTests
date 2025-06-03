@@ -16,6 +16,8 @@ class LoginPageLocators:
     REGISTRATION_BUTTON_MAIL_RU = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
     REGISTRATION_BUTTON_YANDEX = (By.XPATH, '//*[@class="i ic social-icon __s __yandex"]')
     ERROR_TEXT = (By.XPATH, '//*[@class="input-e login_error"]')
+    GO_BACK_BUTTON = (By.XPATH, '//*[@data-l="t,cancel"]')
+    SUPPORT_BUTTON = (By.XPATH, '//*[@class="svg-ic svg-ico_help_circle_16 tico_img"]')
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
@@ -23,6 +25,8 @@ class LoginPageHelper(BasePage):
         self.check_page()
 
     def check_page(self):
+        with allure.step('Проверяем корректность загрузки страницы'):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_TAB_BUTTON)
         self.find_element(LoginPageLocators.QR_TAB_BUTTON)
         self.find_element(LoginPageLocators.LOGIN_FIELD)
@@ -46,6 +50,16 @@ class LoginPageHelper(BasePage):
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
 
     @allure.step('Заполняем поле "Логин"')
-    def type_login(self):
+    def type_login(self, login):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(login)
         self.attach_screenshot()
-        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('ZAIKOVDD')
+
+    @allure.step('Заполняем поле "Пароль"')
+    def type_password(self, password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
+
+    @allure.step('Переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.CAN_NOT_LOGIN).click()
