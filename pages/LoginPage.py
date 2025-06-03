@@ -13,6 +13,28 @@ class LoginPageLocators:
     REGISTRATION_BUTTON_VK = (By.XPATH, '//*[@class="i ic social-icon __s __vk_id"]')
     REGISTRATION_BUTTON_MAIL_RU = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
     REGISTRATION_BUTTON_YANDEX = (By.XPATH, '//*[@class="i ic social-icon __s __yandex"]')
+    ERROR_TEXT = (By.XPATH, '//*[@class="input-e login_error"]')
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_TAB_BUTTON)
+        self.find_element(LoginPageLocators.QR_TAB_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON_QR)
+        self.find_element(LoginPageLocators.CAN_NOT_LOGIN)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON_VK)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON_MAIL_RU)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON_YANDEX)
+
+    def click_login(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
