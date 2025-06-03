@@ -38,3 +38,6 @@ class LoginPageHelper(BasePage):
 
     def get_error_text(self):
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    def type_login(self):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('ZAIKOVDD')
