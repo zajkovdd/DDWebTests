@@ -2,7 +2,7 @@ import random
 
 import allure
 
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 
 class RegistrationPageLocators:
@@ -12,7 +12,7 @@ class RegistrationPageLocators:
     SUBMIT_BUTTON = (By.XPATH, '//*[@data-l="t,submit"]')
     SUPPORT_BUTTON = (By.XPATH, '//*[@class="svg-ic svg-ico_help_circle_16 tico_img"]')
 
-class RegistrationPageHelper(BasePage):
+class RegistrationPageHelperHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
