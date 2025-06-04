@@ -1,6 +1,6 @@
 import allure
 
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 
 class LoginPageLocators:
@@ -19,7 +19,7 @@ class LoginPageLocators:
     GO_BACK_BUTTON = (By.XPATH, '//*[@data-l="t,cancel"]')
     SUPPORT_BUTTON = (By.XPATH, '//*[@class="svg-ic svg-ico_help_circle_16 tico_img"]')
 
-class LoginPageHelper(BasePage):
+class LoginPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
@@ -63,3 +63,8 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.CAN_NOT_LOGIN).click()
+
+    @allure.step('Переходим к регистрации')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
