@@ -6,8 +6,8 @@ from selenium.webdriver.support import expected_conditions
 
 class BasePageLocators:
     LOGO_BUTTON = (By.ID, 'nohook_logo_link')
-    VK_ECOSYSTEM_BUTTON = (By.XPATH, '//*[@data-l="t,vk_ecosystem"]')
-    MORE_BUTTON = (By.XPATH, '//*[@data-l="t,more"]')
+    VK_ECOSYSTEM_BUTTON = (By.XPATH, '//*[@class="svg-ic svg-More vk-ecosystem-icon"]')
+    MORE_BUTTON = (By.XPATH, '//*[@class="toolbar_nav_i_ic"]')
 
 class BasePageHelper:
     def __init__(self, driver):
@@ -17,7 +17,7 @@ class BasePageHelper:
         with allure.step('Проверяем корректность загрузки страницы'):
             self.attach_screenshot()
         self.find_element(BasePageLocators.LOGO_BUTTON)
-        self.find_element(BasePageLocators.VK_ECOSYSTEM_BUTTON)
+        self.find_element(BasePageLocators.MORE_BUTTON)
 
     def find_element(self, locator, time=5):
         return WebDriverWait(self.driver, time).until(expected_conditions.visibility_of_element_located(locator), message=f'Не удалось найти элемент {locator}')
@@ -34,6 +34,7 @@ class BasePageHelper:
 
     @allure.step('Нажимаем кноку экосистемы')
     def click_vk_ecosystem(self):
+        self.attach_screenshot()
         self.find_element(BasePageLocators.VK_ECOSYSTEM_BUTTON).click()
 
     @allure.step('Нажимаем кноку "еще"')

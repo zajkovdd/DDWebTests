@@ -40,6 +40,7 @@ class LoginPageHelper(BasePageHelper):
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON_MAIL_RU)
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON_YANDEX)
 
+
     @allure.step('Нажимаем на кнопку "Войти"')
     def click_login(self):
         self.attach_screenshot()

@@ -7,7 +7,7 @@ from pages.VKEcosystemPage import VKEcosystemPageHelper
 
 BASE_URL = 'https://ok.ru/'
 
-@allure.suite('Проверка nek,fhf')
+@allure.suite('Проверка тулбара')
 @allure.title('Переход к проектам экосистемы ВК')
 def test_open_vk_ecosystemm(browser):
     BasePage = BasePageHelper(browser)
@@ -15,8 +15,8 @@ def test_open_vk_ecosystemm(browser):
     BasePage.check_page()
     LoginPage = LoginPageHelper(browser)
     current_window_id = LoginPage.get_window_id(0)
-    LoginPage.click_vk_ecosystem()
     LoginPage.click_more_button()
+    LoginPage.click_vk_ecosystem()
     new_window_id = LoginPage.get_window_id(1)
     LoginPage.change_window(new_window_id)
     VKEcosystemPage = VKEcosystemPageHelper(browser)
