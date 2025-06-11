@@ -13,6 +13,7 @@ def test_open_vk_ecosystemm(browser):
     BasePage = BasePageHelper(browser)
     BasePage.get_url(BASE_URL)
     BasePage.check_page()
+    BasePage.accept_cookie()
     LoginPage = LoginPageHelper(browser)
     current_window_id = LoginPage.get_window_id(0)
     LoginPage.click_more_button()

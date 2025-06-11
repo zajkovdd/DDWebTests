@@ -8,10 +8,12 @@ class BasePageLocators:
     LOGO_BUTTON = (By.ID, 'nohook_logo_link')
     VK_ECOSYSTEM_BUTTON = (By.XPATH, '//*[@class="svg-ic svg-More vk-ecosystem-icon"]')
     MORE_BUTTON = (By.XPATH, '//*[@class="toolbar_nav_i_ic"]')
+    COOKIE_BUTTON_ACCEPT = (By.XPATH, '//button[text()="Разрешить все"]')
 
 class BasePageHelper:
     def __init__(self, driver):
         self.driver = driver
+
 
     def check_page(self):
         with allure.step('Проверяем корректность загрузки страницы'):
@@ -48,3 +50,7 @@ class BasePageHelper:
     @allure.step('Переходим на экран с айди')
     def change_window(self, window_id):
         self.driver.switch_to.window(window_id)
+
+    @allure.step('Принимаем куки')
+    def accept_cookie(self):
+        self.find_element(BasePageLocators.COOKIE_BUTTON_ACCEPT).click()

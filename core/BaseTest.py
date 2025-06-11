@@ -3,7 +3,7 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def browser():
     options = webdriver.ChromeOptions()
     options.add_argument("--lang=ru")
